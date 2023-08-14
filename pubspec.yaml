@@ -30,8 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  hello:
-    path: ./hello/
+  coreapp:
+    path: ./core_app/
   flutter_bloc: ^8.1.2
   bloc_test: ^9.1.4
   http: ^0.13.5

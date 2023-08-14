@@ -1,8 +1,8 @@
+import 'package:coreapp/navigation/bloc/nav_bloc.dart';
+import 'package:coreapp/navigation/bloc/nav_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hello/data/data_bloc/data_bloc.dart';
-import 'package:hello/navigation/bloc/nav_bloc.dart';
-import 'package:hello/navigation/bloc/nav_events.dart';
+
 import 'package:simpsonsviewer/blocs/interactive_bloc.dart';
 import 'package:simpsonsviewer/pages/mobile/detail_screen.dart';
 

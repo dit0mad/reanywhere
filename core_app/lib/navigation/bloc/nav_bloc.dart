@@ -1,9 +1,9 @@
+import 'package:coreapp/data/data_bloc/data_bloc.dart';
+import 'package:coreapp/data/events/data_events.dart';
+import 'package:coreapp/navigation/bloc/nav_events.dart';
+import 'package:coreapp/navigation/bloc/stack_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hello/data/data_bloc/data_bloc.dart';
-import 'package:hello/data/events/data_events.dart';
-import 'package:hello/navigation/bloc/nav_events.dart';
-import 'package:hello/navigation/bloc/stack_states.dart';
 
 class NaavBloc extends Bloc<NavigationEvent, NavState> {
   final List<MaterialPage<dynamic>> mobileStack;

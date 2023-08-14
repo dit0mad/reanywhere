@@ -1,6 +1,6 @@
+import 'package:coreapp/data/data_bloc/data_bloc.dart';
+import 'package:coreapp/http_service/http_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hello/data/data_bloc/data_bloc.dart';
-import 'package:hello/http_service/http_service.dart';
 
 abstract class BaseInteractiveState {
   const BaseInteractiveState();

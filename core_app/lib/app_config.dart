@@ -1,5 +1,5 @@
+import 'package:coreapp/http_service/http_service.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/http_service/http_service.dart';
 
 class AppConfig {
   final HttpService httpService;

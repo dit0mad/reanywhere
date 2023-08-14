@@ -1,8 +1,8 @@
 import 'dart:math';
 
+import 'package:coreapp/navigation/bloc/nav_bloc.dart';
+import 'package:coreapp/navigation/bloc/nav_events.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/navigation/bloc/nav_bloc.dart';
-import 'package:hello/navigation/bloc/nav_events.dart';
 
 class MainStackState extends NavState {
   final List<MaterialPage> mainStackMobile;

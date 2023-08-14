@@ -1,13 +1,13 @@
+import 'package:coreapp/app_config.dart';
+import 'package:coreapp/core_app.dart';
+import 'package:coreapp/data/data_bloc/data_bloc.dart';
+import 'package:coreapp/data/events/data_events.dart';
+import 'package:coreapp/http_service/http_service.dart';
+import 'package:coreapp/navigation/bloc/nav_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hello/core_app.dart';
-import 'package:hello/app_config.dart';
-import 'package:hello/data/data_bloc/data_bloc.dart';
-import 'package:hello/data/events/data_events.dart';
-import 'package:hello/http_service/http_service.dart';
-import 'package:hello/navigation/bloc/nav_bloc.dart';
-import 'package:hello/navigation/bloc/nav_events.dart';
+
 import 'package:simpsonsviewer/blocs/interactive_bloc.dart';
 import 'package:simpsonsviewer/observer.dart';
 import 'package:simpsonsviewer/pages/route_names.dart';

@@ -1,7 +1,7 @@
+import 'package:coreapp/app_config.dart';
+import 'package:coreapp/data/events/data_events.dart';
+import 'package:coreapp/http_service/http_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hello/app_config.dart';
-import 'package:hello/data/events/data_events.dart';
-import 'package:hello/http_service/http_service.dart';
 
 abstract class DataState {
   const DataState();
