@@ -31,7 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   coreapp:
-    path: ./core_app/
+    path: ../core_app/
   flutter_bloc: ^8.1.2
   bloc_test: ^9.1.4
   http: ^0.13.5

@@ -124,7 +124,7 @@ packages:
   coreapp:
     dependency: "direct main"
     description:
-      path: core_app
+      path: "../core_app"
       relative: true
     source: path
     version: "0.0.1"

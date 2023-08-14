@@ -1,15 +1,10 @@
-import 'package:coreapp/app_config.dart';
-import 'package:coreapp/core_app.dart';
-import 'package:coreapp/data/data_bloc/data_bloc.dart';
-import 'package:coreapp/data/events/data_events.dart';
-import 'package:coreapp/http_service/http_service.dart';
-import 'package:coreapp/navigation/bloc/nav_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wireviewer/blocs/interactive_bloc.dart';
-import 'package:wireviewer/observer.dart';
-import 'package:wireviewer/pages/route_names.dart';
+
+import 'blocs/interactive_bloc.dart';
+import 'observer.dart';
+import 'pages/route_names.dart';
 
 //blocs -> baselayout -> entrypoint -> navigator
 
@@ -20,9 +15,9 @@ void main() {
 
   //configure the settings to pass to bloc here.
   const AppConfig appConfig = AppConfig(
-      flavor: Flavor.other,
+      flavor: Flavor.simpson,
       httpService: HttpService(
-          url: 'http://api.duckduckgo.com/?q=the+wire+characters&format=json'),
+          url: 'http://api.duckduckgo.com/?q=simpsons+characters&format=json'),
       mobile: mobileStack,
       tablet: tableStack);
 
