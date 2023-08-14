@@ -11,8 +11,6 @@ class HttpService {
   Future<Map<String, List<BaseCharacter>>> getData() async {
     final req = await get(Uri.parse(url));
 
-    print('object');
-
     final body = json.decode(req.body);
 
     final String name = body['Heading'];
@@ -110,6 +108,22 @@ class SimpsonCharacter extends BaseCharacter {
 
   static SimpsonCharacter fromType(BaseCharacter character) {
     return SimpsonCharacter(
+      description: character.description,
+      image: character.image,
+      title: character.title,
+    );
+  }
+}
+
+class WireViewerCharacter extends BaseCharacter {
+  WireViewerCharacter({
+    required super.description,
+    required super.image,
+    required super.title,
+  });
+
+  static WireViewerCharacter fromType(BaseCharacter character) {
+    return WireViewerCharacter(
       description: character.description,
       image: character.image,
       title: character.title,
