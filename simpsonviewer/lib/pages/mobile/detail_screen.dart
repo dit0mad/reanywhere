@@ -3,7 +3,7 @@ import 'package:coreapp/navigation/bloc/nav_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:simpsonsviewer/blocs/interactive_bloc.dart';
+import '../../blocs/interactive_bloc.dart';
 
 class CharacterDetail extends StatelessWidget {
   const CharacterDetail({super.key});

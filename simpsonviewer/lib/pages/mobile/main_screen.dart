@@ -3,8 +3,8 @@ import 'package:coreapp/navigation/bloc/nav_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:simpsonsviewer/blocs/interactive_bloc.dart';
-import 'package:simpsonsviewer/pages/mobile/detail_screen.dart';
+import '../../blocs/interactive_bloc.dart';
+import 'detail_screen.dart';
 
 class MobileMainScreen extends StatelessWidget {
   const MobileMainScreen({super.key});

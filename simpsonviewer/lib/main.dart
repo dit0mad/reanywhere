@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:simpsonsviewer/blocs/interactive_bloc.dart';
-import 'package:simpsonsviewer/observer.dart';
-import 'package:simpsonsviewer/pages/route_names.dart';
+import 'blocs/interactive_bloc.dart';
+import 'observer.dart';
+import 'pages/route_names.dart';
 
 //blocs -> baselayout -> entrypoint -> navigator
 
