@@ -59,6 +59,14 @@ class DataBloc extends Bloc<ApiEvents, DataState> {
           );
           break;
         case Flavor.other:
+          final re =
+              data.values.first.map((e) => WireViewerCharacter.fromType(e));
+          emit(
+            DataLoadedState(
+                characters: re.toList(),
+                title: data.keys.first,
+                selectedCharacter: re.first),
+          );
           break;
         default:
       }

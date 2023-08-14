@@ -116,3 +116,19 @@ class SimpsonCharacter extends BaseCharacter {
     );
   }
 }
+
+class WireViewerCharacter extends BaseCharacter {
+  WireViewerCharacter({
+    required super.description,
+    required super.image,
+    required super.title,
+  });
+
+  static WireViewerCharacter fromType(BaseCharacter character) {
+    return WireViewerCharacter(
+      description: character.description,
+      image: character.image,
+      title: character.title,
+    );
+  }
+}

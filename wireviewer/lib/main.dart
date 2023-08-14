@@ -20,7 +20,7 @@ void main() {
 
   //configure the settings to pass to bloc here.
   const AppConfig appConfig = AppConfig(
-      flavor: Flavor.simpson,
+      flavor: Flavor.other,
       httpService: HttpService(
           url: 'http://api.duckduckgo.com/?q=the+wire+characters&format=json'),
       mobile: mobileStack,
