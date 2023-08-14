@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:simpsonsviewer/blocs/interactive_bloc.dart';
+import 'package:wireviewer/blocs/interactive_bloc.dart';
 
 class TabletMainScreen extends StatelessWidget {
   const TabletMainScreen({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class TabletMainScreen extends StatelessWidget {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Center(child: Text('Simpson The Characters')),
+        Center(child: Text('WireViewer Characters')),
         Expanded(
           child: Row(
             children: [
