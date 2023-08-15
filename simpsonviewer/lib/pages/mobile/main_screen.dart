@@ -1,3 +1,4 @@
+import 'package:coreapp/http_service/http_service.dart';
 import 'package:coreapp/navigation/bloc/nav_bloc.dart';
 import 'package:coreapp/navigation/bloc/nav_events.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +15,26 @@ class MobileMainScreen extends StatefulWidget {
 }
 
 class _MobileMainScreenState extends State<MobileMainScreen> {
-  late final InteractiveBloc interactiveBloc;
-  late final NavigationBloc navBloc;
+  late InteractiveBloc interactiveBloc;
+  late NavigationBloc navBloc;
+
+  final List<String> _searchedCharacters = [];
 
   @override
   void didChangeDependencies() {
     interactiveBloc = BlocProvider.of<InteractiveBloc>(context);
     navBloc = BlocProvider.of<NavigationBloc>(context);
     super.didChangeDependencies();
+
+    // if (interactiveBloc.state is InteractiveState) {
+    //   final state = interactiveBloc.state as InteractiveState;
+
+    //   final characters = state.dataState.characters.map((e) => e.title);
+    //   final searchTerm = state.searchTerm;
+
+    //   _searchedCharacters.addAll(
+    //       characters.where((element) => element.contains('$searchTerm')));
+    // }
   }
 
   @override
@@ -29,7 +42,17 @@ class _MobileMainScreenState extends State<MobileMainScreen> {
     return BlocBuilder<InteractiveBloc, BaseInteractiveState>(
       builder: (context, state) {
         if (state is InteractiveState) {
+          _searchedCharacters.clear();
           final selectedChar = state.selectedCharacter;
+
+          final characterss = state.dataState.characters.map((e) => e.title);
+          final searchTerm = state.searchTerm;
+
+          if (searchTerm != null) {
+            _searchedCharacters.clear();
+            _searchedCharacters.addAll(characterss
+                .where((element) => element.contains('$searchTerm')));
+          }
 
           final characters = state.dataState.characters.map((e) {
             final index = state.dataState.characters.indexOf(e);
@@ -54,13 +77,24 @@ class _MobileMainScreenState extends State<MobileMainScreen> {
                 Column(
                   children: [
                     const SearchBar(),
+                    if (_searchedCharacters.isNotEmpty)
+                      Expanded(
+                          child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            ..._searchedCharacters.map((e) => Text(e)),
+                          ],
+                        ),
+                      )),
                     Expanded(
                       child: Ink(
                         color: Colors.green,
                         child: SingleChildScrollView(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [...characters],
+                            children: [
+                              ...characters,
+                            ],
                           ),
                         ),
                       ),
@@ -93,6 +127,12 @@ class _SearchBarState extends State<SearchBar> {
     controller.dispose();
   }
 
+  void _handleSearchInput(final String newStr) {
+    BlocProvider.of<InteractiveBloc>(context).add(
+      SearchValue(searchTerm: controller.text),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -104,6 +144,7 @@ class _SearchBarState extends State<SearchBar> {
           child: SizedBox(
             height: 30,
             child: TextFormField(
+                onChanged: _handleSearchInput,
                 textAlignVertical: TextAlignVertical.center,
                 controller: controller,
                 textInputAction: TextInputAction.search,
@@ -124,6 +165,9 @@ class _SearchBarState extends State<SearchBar> {
                     iconSize: 20,
                     onPressed: () {
                       controller.clear();
+                      BlocProvider.of<InteractiveBloc>(context).add(
+                        SearchValue(searchTerm: controller.text),
+                      );
                     },
                     constraints:
                         const BoxConstraints(minHeight: 36, minWidth: 36),
