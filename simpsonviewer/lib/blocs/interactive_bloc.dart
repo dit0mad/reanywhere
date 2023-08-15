@@ -11,17 +11,21 @@ class InteractiveState extends BaseInteractiveState {
 
   final DataLoadedState dataState;
 
+  final String? searchTerm;
+
   const InteractiveState({
     this.selectedCharacter,
     required this.dataState,
+    this.searchTerm,
   });
-  InteractiveState copyWith({
-    final BaseCharacter? selectedCharacter,
-    final DataLoadedState? dataState,
-  }) {
+  InteractiveState copyWith(
+      {final BaseCharacter? selectedCharacter,
+      final DataLoadedState? dataState,
+      final String? searchTerm}) {
     return InteractiveState(
       selectedCharacter: selectedCharacter ?? this.selectedCharacter,
       dataState: dataState ?? this.dataState,
+      searchTerm: searchTerm ?? this.searchTerm,
     );
   }
 }
@@ -41,6 +45,12 @@ class LoadData extends InteractiveEvents {
   final DataLoadedState dataState;
 
   const LoadData({required this.dataState});
+}
+
+class SearchValue extends InteractiveEvents {
+  final String searchTerm;
+
+  const SearchValue({required this.searchTerm});
 }
 
 class InteractiveBloc extends Bloc<InteractiveEvents, BaseInteractiveState> {

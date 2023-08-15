@@ -35,23 +35,23 @@ class MobileMainScreen extends StatelessWidget {
           });
 
           return Material(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            child: Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Center(child: Text('Simpson The Characters')),
-                ),
-                Expanded(
-                  child: Ink(
-                    color: Colors.green,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [...characters],
+                Column(
+                  children: [
+                    const SearchBar(),
+                    Expanded(
+                      child: Ink(
+                        color: Colors.green,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [...characters],
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
@@ -59,6 +59,71 @@ class MobileMainScreen extends StatelessWidget {
         }
         return const Center(child: CircularProgressIndicator());
       },
+    );
+  }
+}
+
+class SearchBar extends StatefulWidget {
+  const SearchBar({super.key});
+
+  @override
+  State<SearchBar> createState() => _SearchBarState();
+}
+
+class _SearchBarState extends State<SearchBar> {
+  final TextEditingController controller = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: SizedBox(
+            height: 30,
+            child: TextFormField(
+                textAlignVertical: TextAlignVertical.center,
+                controller: controller,
+                textInputAction: TextInputAction.search,
+                decoration: InputDecoration(
+                  prefixIcon: IconButton(
+                    icon: const Icon(Icons.search),
+                    iconSize: 20,
+                    onPressed: () {
+                      BlocProvider.of<InteractiveBloc>(context).add(
+                        SearchValue(searchTerm: controller.text),
+                      );
+                    },
+                    constraints:
+                        const BoxConstraints(minHeight: 36, minWidth: 36),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.clear),
+                    iconSize: 20,
+                    onPressed: () {
+                      controller.clear();
+                    },
+                    constraints:
+                        const BoxConstraints(minHeight: 36, minWidth: 36),
+                  ),
+                  contentPadding: EdgeInsets.zero,
+                  isDense: true,
+                  filled: true,
+                  fillColor: Colors.amber,
+                  hintText: 'The Simpson Characters',
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide.none),
+                )),
+          )),
     );
   }
 }
