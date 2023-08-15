@@ -166,7 +166,7 @@ class _SearchBarState extends State<SearchBar> {
                     onPressed: () {
                       controller.clear();
                       BlocProvider.of<InteractiveBloc>(context).add(
-                        SearchValue(searchTerm: controller.text),
+                        const SearchValue(searchTerm: null),
                       );
                     },
                     constraints:
