@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simpsonsviewer/pages/mobile/detail_screen.dart';
+import 'package:simpsonsviewer/pages/mobile/main_screen.dart';
+import 'package:simpsonsviewer/pages/search_bar.dart';
 
 import '../../blocs/interactive_bloc.dart';
 
@@ -8,20 +11,22 @@ class TabletMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Center(child: Text('Simpson The Characters')),
-        Expanded(
-          child: Row(
-            children: [
-              Expanded(child: LeftPanel()),
-              Expanded(child: RightPanel()),
-            ],
+    return const Stack(children: [
+      Column(
+        children: [
+          GlobalSearchBar(),
+          SearchItems(),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(child: LeftPanel()),
+                Expanded(child: RightPanel()),
+              ],
+            ),
           ),
-        ),
-      ],
-    );
+        ],
+      ),
+    ]);
   }
 }
 
@@ -82,7 +87,7 @@ class RightPanel extends StatelessWidget {
     return BlocBuilder<InteractiveBloc, BaseInteractiveState>(
       builder: (context, state) {
         if (state is InteractiveState) {
-          final selectedCharacter = state.selectedCharacter;
+          final selectedCharacter = state.selectedCharacter!;
 
           return Material(
             child: Column(
@@ -94,7 +99,7 @@ class RightPanel extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          Image.network(selectedCharacter!.image),
+                          const ResolveImage(),
                           Center(child: Text(selectedCharacter.title)),
                           Center(child: Text(selectedCharacter.description))
                         ],

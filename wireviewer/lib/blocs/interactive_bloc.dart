@@ -11,19 +11,35 @@ class InteractiveState extends BaseInteractiveState {
 
   final DataLoadedState dataState;
 
+  final String? searchTerm;
+
   const InteractiveState({
     this.selectedCharacter,
     required this.dataState,
+    this.searchTerm,
   });
-  InteractiveState copyWith({
-    final BaseCharacter? selectedCharacter,
-    final DataLoadedState? dataState,
-  }) {
+  InteractiveState copyWith(
+      {final BaseCharacter? selectedCharacter,
+      final DataLoadedState? dataState,
+      final String? searchTerm}) {
     return InteractiveState(
       selectedCharacter: selectedCharacter ?? this.selectedCharacter,
       dataState: dataState ?? this.dataState,
+      searchTerm: searchTerm,
     );
   }
+
+  @override
+  int get hashCode =>
+      Object.hashAll([selectedCharacter, dataState, searchTerm]);
+
+  @override
+  operator ==(dynamic other) =>
+      identical(other, this) ||
+      (other is InteractiveState &&
+          other.selectedCharacter == selectedCharacter &&
+          other.dataState == dataState &&
+          other.searchTerm == searchTerm);
 }
 
 class InitInteractiveState extends BaseInteractiveState {}
@@ -43,8 +59,22 @@ class LoadData extends InteractiveEvents {
   const LoadData({required this.dataState});
 }
 
+class SearchValue extends InteractiveEvents {
+  final String? searchTerm;
+
+  const SearchValue({required this.searchTerm});
+}
+
 class InteractiveBloc extends Bloc<InteractiveEvents, BaseInteractiveState> {
   InteractiveBloc() : super(InitInteractiveState()) {
+    on<SearchValue>((event, emit) {
+      final nextState = state as InteractiveState;
+
+      emit(nextState.copyWith(
+        searchTerm: event.searchTerm,
+      ));
+    });
+
     on<LoadData>(
       (event, emit) {
         final nextState = InteractiveState(

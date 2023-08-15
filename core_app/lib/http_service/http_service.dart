@@ -64,7 +64,13 @@ abstract class BaseCharacter {
   }
 
   static String resolveImage(String imageUrl) {
+    String placeHolderPath = 'assets/noimage.png';
+
     String resolvedUrl = imageUrl;
+
+    if (imageUrl.isEmpty) {
+      return '';
+    }
 
     Uri baseUri = Uri.parse("https://duckduckgo.com");
 

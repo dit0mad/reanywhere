@@ -14,18 +14,19 @@ import 'pages/route_names.dart';
 
 //blocs -> baselayout -> entrypoint -> navigator
 
+const AppConfig appConfig = AppConfig(
+    flavor: Flavor.simpson,
+    httpService: HttpService(
+        url: 'http://api.duckduckgo.com/?q=simpsons+characters&format=json'),
+    mobile: mobileStack,
+    tablet: tableStack);
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
   WidgetsFlutterBinding.ensureInitialized();
 
   //configure the settings to pass to bloc here.
-  const AppConfig appConfig = AppConfig(
-      flavor: Flavor.simpson,
-      httpService: HttpService(
-          url: 'http://api.duckduckgo.com/?q=simpsons+characters&format=json'),
-      mobile: mobileStack,
-      tablet: tableStack);
 
   Bloc.observer = const ViewerBlocObserver();
   runApp(MultiBlocProvider(

@@ -1,7 +1,9 @@
+import 'package:coreapp/http_service/http_service.dart';
 import 'package:coreapp/navigation/bloc/nav_bloc.dart';
 import 'package:coreapp/navigation/bloc/nav_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wireviewer/searchbar.dart';
 
 import '../../blocs/interactive_bloc.dart';
 import 'detail_screen.dart';
@@ -11,12 +13,14 @@ class MobileMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final interactiveBloc = BlocProvider.of<InteractiveBloc>(context);
+    final navBloc = BlocProvider.of<NavigationBloc>(context);
+
     return BlocBuilder<InteractiveBloc, BaseInteractiveState>(
       builder: (context, state) {
         if (state is InteractiveState) {
           final selectedChar = state.selectedCharacter;
-          final interactiveBloc = BlocProvider.of<InteractiveBloc>(context);
-          final navBloc = BlocProvider.of<NavigationBloc>(context);
+
           final characters = state.dataState.characters.map((e) {
             final index = state.dataState.characters.indexOf(e);
             return TextButton(
@@ -35,23 +39,26 @@ class MobileMainScreen extends StatelessWidget {
           });
 
           return Material(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            child: Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Center(child: Text('Simpson The Characters')),
-                ),
-                Expanded(
-                  child: Ink(
-                    color: Colors.green,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [...characters],
+                Column(
+                  children: [
+                    const GlobalSearchBar(),
+                    const SearchItems(),
+                    Expanded(
+                      child: Ink(
+                        color: Colors.green,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              ...characters,
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
