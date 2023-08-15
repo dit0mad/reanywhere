@@ -54,7 +54,7 @@ class MobileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NaavBloc, NavState>(builder: (
+    return BlocBuilder<NavigationBloc, NavState>(builder: (
       context,
       state,
     ) {
@@ -81,7 +81,7 @@ class Tablet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NaavBloc, NavState>(builder: (
+    return BlocBuilder<NavigationBloc, NavState>(builder: (
       context,
       state,
     ) {

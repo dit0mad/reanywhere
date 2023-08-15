@@ -6,8 +6,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/interactive_bloc.dart';
 import 'detail_screen.dart';
 
-class MobileMainScreen extends StatelessWidget {
+class MobileMainScreen extends StatefulWidget {
   const MobileMainScreen({super.key});
+
+  @override
+  State<MobileMainScreen> createState() => _MobileMainScreenState();
+}
+
+class _MobileMainScreenState extends State<MobileMainScreen> {
+  late final InteractiveBloc interactiveBloc;
+  late final NavigationBloc navBloc;
+
+  @override
+  void didChangeDependencies() {
+    interactiveBloc = BlocProvider.of<InteractiveBloc>(context);
+    navBloc = BlocProvider.of<NavigationBloc>(context);
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +30,7 @@ class MobileMainScreen extends StatelessWidget {
       builder: (context, state) {
         if (state is InteractiveState) {
           final selectedChar = state.selectedCharacter;
-          final interactiveBloc = BlocProvider.of<InteractiveBloc>(context);
-          final navBloc = BlocProvider.of<NaavBloc>(context);
+
           final characters = state.dataState.characters.map((e) {
             final index = state.dataState.characters.indexOf(e);
             return TextButton(

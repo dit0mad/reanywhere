@@ -16,7 +16,7 @@ class MobileMainScreen extends StatelessWidget {
         if (state is InteractiveState) {
           final selectedChar = state.selectedCharacter;
           final interactiveBloc = BlocProvider.of<InteractiveBloc>(context);
-          final navBloc = BlocProvider.of<NaavBloc>(context);
+          final navBloc = BlocProvider.of<NavigationBloc>(context);
           final characters = state.dataState.characters.map((e) {
             final index = state.dataState.characters.indexOf(e);
             return TextButton(

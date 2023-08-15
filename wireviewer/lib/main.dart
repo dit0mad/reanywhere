@@ -36,7 +36,7 @@ void main() {
         )..add(const GetData()),
       ),
       BlocProvider(
-          create: (_) => NaavBloc(
+          create: (_) => NavigationBloc(
                 mobileStack: appConfig.mobile,
                 tabletStack: appConfig.tablet,
               )),

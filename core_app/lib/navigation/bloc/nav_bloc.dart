@@ -5,11 +5,11 @@ import 'package:coreapp/navigation/bloc/stack_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NaavBloc extends Bloc<NavigationEvent, NavState> {
+class NavigationBloc extends Bloc<NavigationEvent, NavState> {
   final List<MaterialPage<dynamic>> mobileStack;
   final List<MaterialPage<dynamic>> tabletStack;
 
-  NaavBloc({
+  NavigationBloc({
     required this.mobileStack,
     required this.tabletStack,
   }) : super(

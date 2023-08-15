@@ -20,7 +20,7 @@ class CharacterDetail extends StatelessWidget {
               leading: BackButton(
                   color: Colors.amber,
                   onPressed: () {
-                    BlocProvider.of<NaavBloc>(context).add(MaybePopRoute(
+                    BlocProvider.of<NavigationBloc>(context).add(MaybePopRoute(
                         target: Target.mainStackMobile,
                         page: MaterialPage(child: Container())));
                   }),
