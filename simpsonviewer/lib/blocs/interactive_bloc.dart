@@ -31,12 +31,13 @@ class InteractiveState extends BaseInteractiveState {
 
   @override
   int get hashCode =>
-      Object.hashAll([selectedCharacter, dataState, searchTerm]);
+      selectedCharacter.hashCode ^ dataState.hashCode ^ searchTerm.hashCode;
 
   @override
-  operator ==(dynamic other) =>
+  bool operator ==(Object other) =>
       identical(other, this) ||
       (other is InteractiveState &&
+          other.runtimeType == runtimeType &&
           other.selectedCharacter == selectedCharacter &&
           other.dataState == dataState &&
           other.searchTerm == searchTerm);
@@ -88,12 +89,10 @@ class InteractiveBloc extends Bloc<InteractiveEvents, BaseInteractiveState> {
     on<SetCharacterDetail>((event, emit) {
       final nextState = state as InteractiveState;
 
-      if (state is InteractiveState) {
-        final nextCharacter =
-            nextState.dataState.characters.elementAt(event.index);
+      final nextCharacter =
+          nextState.dataState.characters.elementAt(event.index);
 
-        emit(nextState.copyWith(selectedCharacter: nextCharacter));
-      }
+      emit(nextState.copyWith(selectedCharacter: nextCharacter));
     });
   }
 }

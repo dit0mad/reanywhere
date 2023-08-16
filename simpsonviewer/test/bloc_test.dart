@@ -20,38 +20,44 @@ class MockApiService extends Mock implements HttpService {}
 
 Future<http.Response> helperFunc() async {
   return http.Response('Mocked Response', 200);
-  ;
 }
 
 void main() {
   group('Event to state tests', () {
+    late InteractiveBloc inbloc;
+
+    setUp(() {
+      inbloc = InteractiveBloc();
+    });
+
     final dataState = DataLoadedState(
         characters: [...characters.values.first], title: 'title');
 
-    blocTest(
-      'emits [InitInteractiveState] when Interactive bloc is initialized',
-      build: () => InteractiveBloc(),
-      act: (bloc) => bloc.emit(InitInteractiveState()),
-      expect: () => [
-        isA<InitInteractiveState>(),
-      ],
-    );
+    test('initial state is InitInteractiveState', () {
+      expect(inbloc.state, isA<InitInteractiveState>());
+    });
 
     blocTest(
       'emits [InteractiveState] when LoadData is added',
-      build: () => InteractiveBloc(),
-      act: (bloc) => bloc.add(LoadData(dataState: dataState)),
-      expect: () => [
-        isA<InteractiveState>(),
-      ],
+      build: () => inbloc,
+      act: (inbloc) => inbloc.add(LoadData(dataState: dataState)),
+      expect: () => [isA<InteractiveState>()],
     );
+
     blocTest(
-      'emits [InteractiveState] when SearchValue is added',
-      build: () => InteractiveBloc(),
-      act: (bloc) => bloc.add(const SearchValue(searchTerm: '')),
-      expect: () => [
-        isA<InitInteractiveState>(),
-      ],
+      'emits [InteractiveState] when SetCharacterDetail is added',
+      build: () => inbloc,
+      act: (inbloc) {
+        inbloc.add(SetCharacterDetail(index: 1));
+
+        final nextStae = inbloc.state as InteractiveState;
+
+        final resolved =
+            nextStae.copyWith(selectedCharacter: characters.values.first.first);
+
+        return resolved;
+      },
+      expect: () => [isA<InteractiveState>()],
     );
   });
 }
