@@ -48,7 +48,7 @@ class LeftPanel extends StatelessWidget {
                 interactiveBloc.add(SetCharacterDetail(index: index));
               },
               child: Ink(
-                  color: selectedChar == e ? Colors.red : null,
+                  color: selectedChar == e ? Colors.amber[100] : null,
                   child: Text(e.title)),
             );
           });
@@ -59,7 +59,6 @@ class LeftPanel extends StatelessWidget {
               children: [
                 Expanded(
                   child: Ink(
-                    color: Colors.lightBlue,
                     child: SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -95,7 +94,7 @@ class RightPanel extends StatelessWidget {
               children: [
                 Expanded(
                   child: Ink(
-                    color: Colors.green,
+                    padding: const EdgeInsets.all(12),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
