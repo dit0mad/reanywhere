@@ -95,7 +95,6 @@ class RightPanel extends StatelessWidget {
               children: [
                 Expanded(
                   child: Ink(
-                    color: Colors.green,
                     child: SingleChildScrollView(
                       child: Column(
                         children: [

@@ -1,4 +1,3 @@
-import 'package:coreapp/http_service/http_service.dart';
 import 'package:coreapp/navigation/bloc/nav_bloc.dart';
 import 'package:coreapp/navigation/bloc/nav_events.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,7 @@ class MobileMainScreen extends StatelessWidget {
                     target: Target.mainStackMobile));
               },
               child: Ink(
-                  color: selectedChar == e ? Colors.red : null,
+                  color: selectedChar == e ? Colors.amber[100] : null,
                   child: Text(e.title)),
             );
           });
@@ -47,7 +46,6 @@ class MobileMainScreen extends StatelessWidget {
                     const SearchItems(),
                     Expanded(
                       child: Ink(
-                        color: Colors.green,
                         child: SingleChildScrollView(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,

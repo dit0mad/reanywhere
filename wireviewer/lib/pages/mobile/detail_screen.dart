@@ -30,13 +30,19 @@ class CharacterDetail extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Ink(
-                      color: Colors.green,
+                      padding: const EdgeInsets.all(12),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
                             const ResolveImage(),
+                            const SizedBox(
+                              height: 5,
+                            ),
                             Center(child: Text(selectedCharacter!.title)),
-                            Center(child: Text(selectedCharacter!.description))
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Center(child: Text(selectedCharacter.description))
                           ],
                         ),
                       ),

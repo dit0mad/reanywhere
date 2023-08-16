@@ -1,10 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:coreapp/data/data_bloc/data_bloc.dart';
-import 'package:coreapp/data/events/data_events.dart';
 import 'package:coreapp/http_service/http_service.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
+import 'package:mockito/mockito.dart';
 import 'package:simpsonsviewer/blocs/interactive_bloc.dart';
 
 final Map<String, List<BaseCharacter>> characters = {
