@@ -88,10 +88,12 @@ class InteractiveBloc extends Bloc<InteractiveEvents, BaseInteractiveState> {
     on<SetCharacterDetail>((event, emit) {
       final nextState = state as InteractiveState;
 
-      final nextCharacter =
-          nextState.dataState.characters.elementAt(event.index);
+      if (state is InteractiveState) {
+        final nextCharacter =
+            nextState.dataState.characters.elementAt(event.index);
 
-      emit(nextState.copyWith(selectedCharacter: nextCharacter));
+        emit(nextState.copyWith(selectedCharacter: nextCharacter));
+      }
     });
   }
 }
