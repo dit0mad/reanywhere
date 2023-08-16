@@ -46,7 +46,7 @@ class DataBloc extends Bloc<ApiEvents, DataState> {
 
       final flavor = appConfig.flavor;
 
-      final data = await httpService.getData(httpService.url);
+      final data = await httpService.getData();
 
       switch (flavor) {
         case Flavor.simpson:

@@ -8,7 +8,7 @@ class HttpService {
 
   const HttpService({required this.url});
 
-  Future<Map<String, List<BaseCharacter>>> getData(param0) async {
+  Future<Map<String, List<BaseCharacter>>> getData() async {
     final req = await get(Uri.parse(url));
 
     final body = json.decode(req.body);
