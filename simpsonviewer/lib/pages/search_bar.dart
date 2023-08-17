@@ -106,6 +106,7 @@ class SearchItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<BaseCharacter> searchedCharacters = [];
+
     final interactiveBloc = BlocProvider.of<InteractiveBloc>(context);
     final navBloc = BlocProvider.of<NavigationBloc>(context);
     return BlocBuilder<InteractiveBloc, BaseInteractiveState>(
@@ -121,31 +122,37 @@ class SearchItems extends StatelessWidget {
 
             searchedCharacters.addAll(allChars.where(
                 (element) => element.title.toLowerCase().contains(searchTerm)));
+
+            searchedCharacters.addAll(allChars.where((element) =>
+                element.description.toLowerCase().contains(searchTerm)));
           }
 
           if (searchedCharacters.isNotEmpty) {
             return Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    ...searchedCharacters.map(
-                      (e) {
-                        final index = state.dataState.characters.indexOf(e);
-                        return TextButton(
-                          child: Text(e.title),
-                          onPressed: () {
-                            interactiveBloc
-                                .add(SetCharacterDetail(index: index));
-                            navBloc.add(const PushPageRoute(
-                                page: MaterialPage(
-                                  child: CharacterDetail(),
-                                ),
-                                target: Target.mainStackMobile));
-                          },
-                        );
-                      },
-                    ),
-                  ],
+              child: Ink(
+                color: Colors.grey[100],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ...searchedCharacters.toSet().map(
+                        (e) {
+                          final index = state.dataState.characters.indexOf(e);
+                          return TextButton(
+                            child: Text(e.title),
+                            onPressed: () {
+                              interactiveBloc
+                                  .add(SetCharacterDetail(index: index));
+                              navBloc.add(const PushPageRoute(
+                                  page: MaterialPage(
+                                    child: CharacterDetail(),
+                                  ),
+                                  target: Target.mainStackMobile));
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );

@@ -122,6 +122,9 @@ class SearchItems extends StatelessWidget {
 
             searchedCharacters.addAll(allChars.where(
                 (element) => element.title.toLowerCase().contains(searchTerm)));
+
+            searchedCharacters.addAll(allChars.where((element) =>
+                element.description.toLowerCase().contains(searchTerm)));
           }
 
           if (searchedCharacters.isNotEmpty) {

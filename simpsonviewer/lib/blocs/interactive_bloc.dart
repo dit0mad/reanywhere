@@ -1,9 +1,13 @@
 import 'package:coreapp/data/data_bloc/data_bloc.dart';
 import 'package:coreapp/http_service/http_service.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-abstract class BaseInteractiveState {
+abstract class BaseInteractiveState extends Equatable {
   const BaseInteractiveState();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class InteractiveState extends BaseInteractiveState {
@@ -30,17 +34,7 @@ class InteractiveState extends BaseInteractiveState {
   }
 
   @override
-  int get hashCode =>
-      selectedCharacter.hashCode ^ dataState.hashCode ^ searchTerm.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(other, this) ||
-      (other is InteractiveState &&
-          other.runtimeType == runtimeType &&
-          other.selectedCharacter == selectedCharacter &&
-          other.dataState == dataState &&
-          other.searchTerm == searchTerm);
+  List<Object?> get props => [searchTerm, selectedCharacter, dataState];
 }
 
 class InitInteractiveState extends BaseInteractiveState {}
@@ -68,14 +62,6 @@ class SearchValue extends InteractiveEvents {
 
 class InteractiveBloc extends Bloc<InteractiveEvents, BaseInteractiveState> {
   InteractiveBloc() : super(InitInteractiveState()) {
-    on<SearchValue>((event, emit) {
-      final nextState = state as InteractiveState;
-
-      emit(nextState.copyWith(
-        searchTerm: event.searchTerm,
-      ));
-    });
-
     on<LoadData>(
       (event, emit) {
         final nextState = InteractiveState(
@@ -86,6 +72,14 @@ class InteractiveBloc extends Bloc<InteractiveEvents, BaseInteractiveState> {
         emit(nextState);
       },
     );
+    on<SearchValue>((event, emit) {
+      final nextState = state as InteractiveState;
+
+      emit(nextState.copyWith(
+        searchTerm: event.searchTerm,
+      ));
+    });
+
     on<SetCharacterDetail>((event, emit) {
       final nextState = state as InteractiveState;
 

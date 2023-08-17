@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simpsonsviewer/pages/mobile/detail_screen.dart';
-import 'package:simpsonsviewer/pages/mobile/main_screen.dart';
 import 'package:simpsonsviewer/pages/search_bar.dart';
 
 import '../../blocs/interactive_bloc.dart';
