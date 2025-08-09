@@ -1,1 +1,1 @@
-Candidate demo for Anywhere real estate application
+Flavors and dynamic UI
